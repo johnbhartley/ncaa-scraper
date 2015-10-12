@@ -7,9 +7,6 @@ var url;
 var teams = [];
 var images = [];
 
-// app.use(express.methodOverride());
-// app.use(express.bodyParser());
-
 app.set('view engine', 'ejs');
 
 
@@ -20,12 +17,6 @@ app.get('/scrape', function (req, res) {
     if(!error && response.statusCode === 200) {
       //console.log(html);
       var $ = cheerio.load(html);
-
-      // // var game, day, team1, team2;
-
-      // // var json = { game: "", day: "", team1: "", team2: ""};
-      // // console.log('hey');
-      // // 
       
       $('.wisfb_fullTeamStacked').each(function(i, elem) {
         var number = $(this).children('span').text();
@@ -44,32 +35,6 @@ app.get('/scrape', function (req, res) {
         images[i] = src;
       });
 
-      //var score = $('.wisfb_teamInfo').html();
-      //console.log(teams, images);
-      //   console.log($(this).text());
-      //   //console.log($(this).children('.abbrev').text());
-      // });
-
-
-
-
-      // //$('.isLeadTopStory h1').filter(function () {
-      // // $('.isLeadTopStory h1').filter(function () {
-      // //   console.log('in lead');
-      // //   var data = $(this);
-      // //   game = data.text();
-      // //   console.log(data);
-      // //   json.game = game;
-
-      // // });
-      
-
-      // // fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
-
-      // //     console.log('File successfully written! - Check your project directory for the output.json file');
-
-      // // })
-      // // 
       var output = '';
 
       teams.forEach(function (el, i) {
@@ -96,14 +61,7 @@ app.get('/scrape', function (req, res) {
     }
   });
 
-  //res.send('Check your console!')
-  //res.send(images, teams);
-
 });
-
-
-
-
 
 app.listen('8181');
 
